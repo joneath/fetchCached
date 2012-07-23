@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>fetchCached Spec Runner</title>
+
+  <link rel="stylesheet" type="text/css" href="lib/jasmine-1.2.0/jasmine.css">
+  <script type="text/javascript" src="lib/jasmine-1.2.0/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine-1.2.0/jasmine-html.js"></script>
+
+  <!-- include vendor files here... -->
+  <script type="text/javascript" src="vendor/jquery.js"></script>
+  <script type="text/javascript" src="vendor/underscore.js"></script>
+  <script type="text/javascript" src="vendor/backbone.js"></script>
+  <script type="text/javascript" src="vendor/mock-ajax.js"></script>
+  <script type="text/javascript" src="vendor/sinon.js"></script>
+
+  <!-- include source files here... -->
+  <script type="text/javascript" src="../src/fetch_cached.js"></script>
+
+  <!-- include spec files here... -->
+  <script type="text/javascript" src="specs/fetch_cached_spec.js"></script>
+
+  <script type="text/javascript">
+    (function() {
+      var jasmineEnv = jasmine.getEnv(),
+          htmlReporter = new jasmine.HtmlReporter(),
+          currentWindowOnload = window.onload;
+
+      jasmineEnv.updateInterval = 1000;
+      jasmineEnv.addReporter(htmlReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+        return htmlReporter.specFilter(spec);
+      };
+
+      window.onload = function() {
+        if (currentWindowOnload) {
+          currentWindowOnload();
+        }
+        execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+    })();
+  </script>
+
+</head>
+
+<body>
+</body>
+</html>
