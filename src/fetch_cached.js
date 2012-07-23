@@ -44,7 +44,7 @@
     var current = new Date();
 
     TTL || (TTL = 0);
-    TTL = current.getTime() + (TTL * 1000);
+    TTL = parseInt(current.getTime(), 10) + (TTL * 1000);
 
     return function(collection, data) {
       cache[key] = JSON.stringify({
