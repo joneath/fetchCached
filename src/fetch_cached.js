@@ -49,7 +49,7 @@
     return function(collection, data) {
       cache[key] = JSON.stringify({
         TTL: TTL,
-        data: collection.toJSON()
+        data: data
       });
 
       if (delegateSuccess) {
@@ -59,7 +59,7 @@
   }
 
   function cachedSuccess(collection, data, options) {
-    collection.reset(data);
+    collection.reset(collection.__proto__.parse(data));
     options.success.call(collection, collection, data);
 
     return;
