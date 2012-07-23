@@ -6,6 +6,7 @@
         cache,
         key,
         TTL,
+        savedTTL,
         now,
         old;
 
@@ -23,9 +24,9 @@
 
         if (savedObj.TTL) {
           now = new Date();
-          TTL = new Date(savedObj.TTL);
+          savedTTL = new Date(savedObj.TTL);
 
-          if (now <= TTL) {
+          if (now <= savedTTL) {
             return cachedSuccess(this, savedObj.data, options);
           } else {
             cache.removeItem(key);
